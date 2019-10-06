@@ -74,11 +74,5 @@ public class GameDataStore
             String[] whereValue = { String.valueOf( settings.getMapWidth() ) };
             db.update( GameSettingsTable.NAME, cv, GameSettingsTable.Cols.MAP_WIDTH + " = ?", whereValue );
         }
-/*
-        String[] whereValue = { String.valueOf( settings.getMapWidth() ) };
-        if( db.update( GameSettingsTable.NAME, cv, GameSettingsTable.Cols.MAP_WIDTH + " = ?", whereValue ) <=0 )
-        {
-            db.insert( GameSettingsTable.NAME, null, cv );
-        } */
     }
 }

@@ -40,5 +40,6 @@ public class GameDBHelper extends SQLiteOpenHelper
     @Override
     public void onUpgrade(SQLiteDatabase db, int v1, int v2)
     {
+        //Do nothing here for the time being
     }
 }

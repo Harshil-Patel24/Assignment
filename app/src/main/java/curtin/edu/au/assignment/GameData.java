@@ -41,7 +41,15 @@ public class GameData
         if( width > 0 && height > 0 )
         {
             map = new MapElement[width][height];
-            //Fill 'er up with basic map elements (land or smth idk)
+
+            //Might not need to do this idk
+            for( int ii = 0; ii < map.length; ii++ )
+            {
+                for( int jj = 0; jj < map[ii].length; jj++ )
+                {
+                    map[ii][jj] = new MapElement();
+                }
+            }
         }
     }
 }
