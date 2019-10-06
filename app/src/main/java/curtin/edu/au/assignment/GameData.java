@@ -52,4 +52,28 @@ public class GameData
             }
         }
     }
+
+    public int getMapWidth()
+    {
+        if( map != null )
+        {
+            return map.length;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public int getMapHeight()
+    {
+        if( map[0] != null )
+        {
+            return map[0].length;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }
