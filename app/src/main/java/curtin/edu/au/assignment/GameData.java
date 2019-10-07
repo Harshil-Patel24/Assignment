@@ -76,4 +76,9 @@ public class GameData
             return 0;
         }
     }
+
+    public MapElement[][] getMapElements()
+    {
+        return map;
+    }
 }

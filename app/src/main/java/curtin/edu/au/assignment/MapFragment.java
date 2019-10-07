@@ -27,9 +27,10 @@ public class MapFragment extends Fragment
         rv.setLayoutManager( new GridLayoutManager( getActivity(), gd.getMapHeight(), GridLayoutManager.HORIZONTAL, false ) );
 
         // Have your data ready
-        List<MapElement> data; //Initialise this
+        //Probably should make this a List somehow
+        MapElement[][] data = gd.getMapElements();
 
-        // Create your adapter (see next slides)
+        // Create your adapter
         //MapAdapter adapter = new MapAdapter(data);
 
         // Hook it up
@@ -40,12 +41,22 @@ public class MapFragment extends Fragment
 
     private class MapAdapter extends RecyclerView.Adapter<MapDataViewHolder>
     {
-        private List<MapElement> data;
+        //This might need to be a List
+        private MapElement[][] data;
 
         @Override
         public int getItemCount()
         {
-            return data.size();
+            int count = 0;
+
+            if( data != null )
+            {
+                //Maybe throw in a check for data[0] != null
+                //But logically shouldn't need one
+                count = ( data.length * data[0].length );
+            }
+
+            return count;
         }
 
         @Override
@@ -58,7 +69,7 @@ public class MapFragment extends Fragment
         @Override
         public void onBindViewHolder( MapDataViewHolder vh, int index )
         {
-            vh.bind( data.get( index ) );
+            //vh.bind( data.get( index ) );
         }
     }
 
@@ -66,7 +77,7 @@ public class MapFragment extends Fragment
     {
         public MapDataViewHolder( LayoutInflater li, ViewGroup parent )
         {
-            super( li.inflate( R.id.gridCell, parent, false ) );
+            super( li.inflate( R.layout.grid_cell, parent, false ) );
         }
 
         //This needs to change from Object
