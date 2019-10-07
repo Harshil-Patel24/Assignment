@@ -81,4 +81,14 @@ public class GameData
     {
         return map;
     }
+
+    public int getCount()
+    {
+        int count = 0;
+        if( map != null )
+        {
+            count = map.length * map[0].length;
+        }
+        return count;
+    }
 }

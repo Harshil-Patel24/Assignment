@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,7 +17,7 @@ public class MapFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup ui, Bundle bundle)
     {
-        GameData gd = GameData.getInstance();
+        GameData data = GameData.getInstance();
 
         View view = inflater.inflate( R.layout.fragment_map, ui, false );
 
@@ -24,17 +25,17 @@ public class MapFragment extends Fragment
         RecyclerView rv = ( RecyclerView )view.findViewById( R.id.mapRecyclerView );
 
         // Specify how it should be laid out
-        rv.setLayoutManager( new GridLayoutManager( getActivity(), gd.getMapHeight(), GridLayoutManager.HORIZONTAL, false ) );
+        rv.setLayoutManager( new GridLayoutManager( getActivity(), data.getMapHeight(), GridLayoutManager.HORIZONTAL, false ) );
 
         // Have your data ready
         //Probably should make this a List somehow
-        MapElement[][] data = gd.getMapElements();
+        //MapElement[][] data = gd.getMapElements();
 
         // Create your adapter
-        //MapAdapter adapter = new MapAdapter(data);
+        MapAdapter adapter = new MapAdapter();
 
         // Hook it up
-        //rv.setAdapter(adapter);
+        rv.setAdapter(adapter);
 
         return view;
     }
@@ -42,7 +43,9 @@ public class MapFragment extends Fragment
     private class MapAdapter extends RecyclerView.Adapter<MapDataViewHolder>
     {
         //This might need to be a List
-        private MapElement[][] data;
+        //private MapElement[][] data;
+
+        private GameData data = GameData.getInstance();
 
         @Override
         public int getItemCount()
@@ -51,13 +54,11 @@ public class MapFragment extends Fragment
 
             if( data != null )
             {
-                //Maybe throw in a check for data[0] != null
-                //But logically shouldn't need one
-                count = ( data.length * data[0].length );
+                count = data.getCount();
             }
 
             return count;
-        }
+    }
 
         @Override
         public MapDataViewHolder onCreateViewHolder( ViewGroup parent, int viewType )
@@ -75,9 +76,12 @@ public class MapFragment extends Fragment
 
     private class MapDataViewHolder extends RecyclerView.ViewHolder
     {
+        private ImageView image;
+
         public MapDataViewHolder( LayoutInflater li, ViewGroup parent )
         {
             super( li.inflate( R.layout.grid_cell, parent, false ) );
+            image = ( ImageView )itemView.findViewById( R.id.image );
         }
 
         //This needs to change from Object
