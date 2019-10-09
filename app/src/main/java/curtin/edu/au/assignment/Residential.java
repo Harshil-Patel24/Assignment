@@ -6,4 +6,5 @@ public class Residential extends Structure
     {
         imageID = id;
     }
+    public String toString(){ return "Residential"; }
 }

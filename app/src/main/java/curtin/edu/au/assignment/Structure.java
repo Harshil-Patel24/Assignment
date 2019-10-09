@@ -8,4 +8,5 @@ public abstract class Structure
     protected int imageID;
 
     public int getImageID(){ return imageID; }
+    public abstract String toString();
 }

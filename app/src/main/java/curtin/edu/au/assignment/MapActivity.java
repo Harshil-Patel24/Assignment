@@ -16,14 +16,19 @@ public class MapActivity extends AppCompatActivity
         gd.setMap();
 
         FragmentManager fm = getSupportFragmentManager();
-        MapFragment frag = ( MapFragment )fm.findFragmentById( R.id.map );
-        if( frag == null )
+        MapFragment fragMap = ( MapFragment )fm.findFragmentById( R.id.map );
+        if( fragMap == null )
         {
-            frag = new MapFragment();
-            fm.beginTransaction().add( R.id.map, frag ).commit();
+            fragMap = new MapFragment();
+            fm.beginTransaction().add( R.id.map, fragMap ).commit();
         }
 
-
+        SelectorFragment fragSelector = ( SelectorFragment )fm.findFragmentById( R.id.selector );
+        if( fragSelector == null )
+        {
+            fragSelector = new SelectorFragment();
+            fm.beginTransaction().add( R.id.selector, fragSelector ).commit();
+        }
 
     }
 }

@@ -28,9 +28,6 @@ public class MapFragment extends Fragment
         // Specify how it should be laid out
         rv.setLayoutManager( new GridLayoutManager( getActivity(), gd.getMapHeight(), GridLayoutManager.HORIZONTAL, false ) );
 
-        //ArrayList<MapElement> data = gd.getMapList();
-        //MapElement[][] data = gd.getMapElements();
-
         // Create your adapter
         MapAdapter adapter = new MapAdapter();
 
@@ -42,24 +39,13 @@ public class MapFragment extends Fragment
 
     private class MapAdapter extends RecyclerView.Adapter<MapDataViewHolder>
     {
-        //This might need to be a List
-        //private MapElement[][] data;
         private GameData gd = GameData.getInstance();
-        //private ArrayList<MapElement> data = gd.getMapList();
         private MapElement[][] data = gd.getMapElements();
 
         @Override
         public int getItemCount()
         {
-            int count = 0;
-
-            /*
-            if( data != null )
-            {
-                count = data.size();
-            } */
-
-            count = gd.getCount();
+            int count = gd.getCount();
 
             return count;
     }

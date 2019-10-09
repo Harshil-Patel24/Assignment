@@ -87,7 +87,6 @@ public class GameData
         return map;
     }
 
-    //Probably wont need this so REMOVE IT LATER
     public int getCount()
     {
         int count = 0;

@@ -1,5 +1,6 @@
 package curtin.edu.au.assignment;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,9 +25,10 @@ public class StructureData
             /*18*/R.drawable.ic_road_s, /*19*/R.drawable.ic_road_w, /*20*/R.drawable.ic_road_nse,
             /*21*/R.drawable.ic_road_nsw, /*22*/R.drawable.ic_road_new, /*23*/R.drawable.ic_road_sew,
             /*24*/R.drawable.ic_grass1, /*25*/R.drawable.ic_grass2, /*26*/R.drawable.ic_grass3,
-            /*27*/R.drawable.ic_grass4 };
+            /*27*/R.drawable.ic_grass4, /*28*/R.drawable.ic_bomb };
 
     private List<Structure> structures = Arrays.asList(new Structure[] {
+            new Destroy(),
             new Residential(R.drawable.ic_building1),
             new Residential(R.drawable.ic_building2),
             new Residential(R.drawable.ic_building3),
@@ -50,14 +52,15 @@ public class StructureData
             new Road(R.drawable.ic_road_nsw),
             new Road(R.drawable.ic_road_new),
             new Road(R.drawable.ic_road_sew),
-            new Land(R.drawable.ic_grass1),
+            /*new Land(R.drawable.ic_grass1),
             new Land(R.drawable.ic_grass2),
             new Land(R.drawable.ic_grass3),
-            new Land(R.drawable.ic_grass4),
+            new Land(R.drawable.ic_grass4),*/
     });
 
     public Structure get( int index ){ return structures.get( index ); }
     public int size(){ return structures.size(); }
     public void add( Structure struc ){ structures.add( 0, struc ); }
     public void remove( int index ){ structures.remove( index ); }
+    public ArrayList<Structure> getStructures(){ return new ArrayList<Structure>(structures); }
 }

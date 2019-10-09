@@ -6,4 +6,5 @@ public class Road extends Structure
     {
         imageID = id;
     }
+    public String toString(){ return "Road"; }
 }

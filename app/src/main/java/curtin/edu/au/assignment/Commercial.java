@@ -6,4 +6,5 @@ public class Commercial extends Structure
     {
         imageID = id;
     }
+    public String toString(){ return "Commercial"; }
 }

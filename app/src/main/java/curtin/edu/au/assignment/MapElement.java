@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import java.util.Random;
+
 public class MapElement
 {
     private Structure structure;
@@ -19,7 +21,11 @@ public class MapElement
 
     public MapElement()
     {
-        int rand = ( ( int )Math.random() ) % 4;
+        //Random numbers to make land terrain make use of different textures
+        Random random = new Random();
+        random.setSeed( System.currentTimeMillis() );
+        random.setSeed( random.nextLong() );
+        int rand = random.nextInt() % 4;
         switch( rand )
         {
             case 0:

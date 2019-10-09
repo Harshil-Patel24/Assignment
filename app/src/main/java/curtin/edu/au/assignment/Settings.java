@@ -31,10 +31,10 @@ public class Settings
     //Initially settings
     public Settings()
     {
-        //Maybe set these to be as values in edittext in activity_settings
+        //Maybe set these to be as values in edit text in activity_settings
         //These are the default values
-        mapHeight = 50;
-        mapWidth = 10;
+        mapHeight = 10;
+        mapWidth = 50;
         initialMoney = 1000;
         familySize = 4;
         shopSize = 6;
