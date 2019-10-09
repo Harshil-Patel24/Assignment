@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MapFragment extends Fragment
@@ -17,7 +18,7 @@ public class MapFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup ui, Bundle bundle)
     {
-        GameData data = GameData.getInstance();
+        GameData gd = GameData.getInstance();
 
         View view = inflater.inflate( R.layout.fragment_map, ui, false );
 
@@ -25,11 +26,9 @@ public class MapFragment extends Fragment
         RecyclerView rv = ( RecyclerView )view.findViewById( R.id.mapRecyclerView );
 
         // Specify how it should be laid out
-        rv.setLayoutManager( new GridLayoutManager( getActivity(), data.getMapHeight(), GridLayoutManager.HORIZONTAL, false ) );
+        rv.setLayoutManager( new GridLayoutManager( getActivity(), gd.getMapHeight(), GridLayoutManager.HORIZONTAL, false ) );
 
-        // Have your data ready
-        //Probably should make this a List somehow
-        //MapElement[][] data = gd.getMapElements();
+        ArrayList<MapElement> data = gd.getMapList();
 
         // Create your adapter
         MapAdapter adapter = new MapAdapter();
@@ -44,8 +43,8 @@ public class MapFragment extends Fragment
     {
         //This might need to be a List
         //private MapElement[][] data;
-
-        private GameData data = GameData.getInstance();
+        private GameData gd = GameData.getInstance();
+        private ArrayList<MapElement> data = gd.getMapList();
 
         @Override
         public int getItemCount()
@@ -54,7 +53,7 @@ public class MapFragment extends Fragment
 
             if( data != null )
             {
-                count = data.getCount();
+                count = data.size();
             }
 
             return count;
@@ -70,7 +69,7 @@ public class MapFragment extends Fragment
         @Override
         public void onBindViewHolder( MapDataViewHolder vh, int index )
         {
-            //vh.bind( data.get( index ) );
+            vh.bind( data.get( index ) );
         }
     }
 
@@ -87,7 +86,7 @@ public class MapFragment extends Fragment
         //This needs to change from Object
         public void bind( MapElement mapElement )
         {
-            //Bind the stuff here I guess
+            image.setImageBitmap( mapElement.getImage() );
         }
     }
 

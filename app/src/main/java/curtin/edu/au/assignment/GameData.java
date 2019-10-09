@@ -1,5 +1,8 @@
 package curtin.edu.au.assignment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameData
 {
     private static final GameData ourInstance = new GameData();
@@ -82,6 +85,7 @@ public class GameData
         return map;
     }
 
+    //Probably wont need this so REMOVE IT LATER
     public int getCount()
     {
         int count = 0;
@@ -90,5 +94,19 @@ public class GameData
             count = map.length * map[0].length;
         }
         return count;
+    }
+
+    public ArrayList<MapElement> getMapList()
+    {
+        ArrayList<MapElement> list = new ArrayList<>();
+        for( int ii = 0; ii < map.length; ii++ )
+        {
+            for( int jj = 0; jj < map[ii].length; jj++ )
+            {
+                list.add( map[ii][jj] );
+            }
+        }
+
+        return list;
     }
 }
