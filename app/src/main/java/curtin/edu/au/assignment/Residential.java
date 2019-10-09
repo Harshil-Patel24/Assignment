@@ -2,8 +2,8 @@ package curtin.edu.au.assignment;
 
 public class Residential extends Structure
 {
-    public Residential(int image)
+    public Residential(int id)
     {
-        imageID = image;
+        imageID = id;
     }
 }

@@ -39,11 +39,13 @@ public class GameData
     }
 
     //Creates the map array
-    public void setMap( int width, int height )
+    public void setMap()
     {
+        int width = settings.getMapWidth();
+        int height = settings.getMapHeight();
         if( width > 0 && height > 0 )
         {
-            map = new MapElement[width][height];
+            map = new MapElement[height][width];
 
             //Might not need to do this idk
             for( int ii = 0; ii < map.length; ii++ )
@@ -56,7 +58,7 @@ public class GameData
         }
     }
 
-    public int getMapWidth()
+    public int getMapHeight()
     {
         if( map != null )
         {
@@ -68,7 +70,7 @@ public class GameData
         }
     }
 
-    public int getMapHeight()
+    public int getMapWidth()
     {
         if( map[0] != null )
         {

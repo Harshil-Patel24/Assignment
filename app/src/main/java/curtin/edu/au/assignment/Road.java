@@ -2,8 +2,8 @@ package curtin.edu.au.assignment;
 
 public class Road extends Structure
 {
-    public Road(int image)
+    public Road(int id)
     {
-        imageID = image;
+        imageID = id;
     }
 }

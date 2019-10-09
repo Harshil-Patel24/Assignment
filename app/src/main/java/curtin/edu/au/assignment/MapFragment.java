@@ -28,7 +28,8 @@ public class MapFragment extends Fragment
         // Specify how it should be laid out
         rv.setLayoutManager( new GridLayoutManager( getActivity(), gd.getMapHeight(), GridLayoutManager.HORIZONTAL, false ) );
 
-        ArrayList<MapElement> data = gd.getMapList();
+        //ArrayList<MapElement> data = gd.getMapList();
+        //MapElement[][] data = gd.getMapElements();
 
         // Create your adapter
         MapAdapter adapter = new MapAdapter();
@@ -44,17 +45,21 @@ public class MapFragment extends Fragment
         //This might need to be a List
         //private MapElement[][] data;
         private GameData gd = GameData.getInstance();
-        private ArrayList<MapElement> data = gd.getMapList();
+        //private ArrayList<MapElement> data = gd.getMapList();
+        private MapElement[][] data = gd.getMapElements();
 
         @Override
         public int getItemCount()
         {
             int count = 0;
 
+            /*
             if( data != null )
             {
                 count = data.size();
-            }
+            } */
+
+            count = gd.getCount();
 
             return count;
     }
@@ -69,25 +74,35 @@ public class MapFragment extends Fragment
         @Override
         public void onBindViewHolder( MapDataViewHolder vh, int index )
         {
-            vh.bind( data.get( index ) );
+            int row = index % gd.getMapHeight();
+            int col = index / gd.getMapHeight();
+
+            vh.bind( data[row][col] );
+            //vh.bind( data.get( index ) );
         }
     }
 
     private class MapDataViewHolder extends RecyclerView.ViewHolder
     {
         private ImageView image;
+        private GameData gd = GameData.getInstance();
 
         public MapDataViewHolder( LayoutInflater li, ViewGroup parent )
         {
             super( li.inflate( R.layout.grid_cell, parent, false ) );
             image = ( ImageView )itemView.findViewById( R.id.image );
+
+            //Add stuff to ensure square images in here (from prac 3)
+            int size = parent.getMeasuredHeight() / gd.getMapHeight() + 1;
+            ViewGroup.LayoutParams lp = itemView.getLayoutParams();
+            lp.width = size;
+            lp.height = size;
         }
 
         //This needs to change from Object
         public void bind( MapElement mapElement )
         {
-            image.setImageBitmap( mapElement.getImage() );
+            image.setImageResource( mapElement.getStructure().getImageID() );
         }
     }
-
 }

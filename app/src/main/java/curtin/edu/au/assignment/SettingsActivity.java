@@ -88,7 +88,7 @@ public class SettingsActivity extends AppCompatActivity
                     settings.setRoadBuildingCost( Integer.parseInt( roadBuildingCost.getText().toString() ) );
 
 // error.setText("EditText value: " + mapWidth.getText().toString() + "\nActual Map Width: " + String.valueOf(settings.getMapWidth()));
-                    store.addSettings( settings );
+//                    store.addSettings( settings );
 
                     //Start the map activity after settings are decided
                     startActivity( new Intent( SettingsActivity.this, MapActivity.class ) );

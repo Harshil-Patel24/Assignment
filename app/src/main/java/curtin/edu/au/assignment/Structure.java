@@ -1,5 +1,7 @@
 package curtin.edu.au.assignment;
 
+import android.graphics.Bitmap;
+
 public abstract class Structure
 {
     //Might need to make protected

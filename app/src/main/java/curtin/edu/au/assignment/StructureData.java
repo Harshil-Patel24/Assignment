@@ -15,13 +15,16 @@ public class StructureData
 
     public static final int[] DRAWABLES = {
             0, // No structure
-            R.drawable.ic_building1, R.drawable.ic_building2, R.drawable.ic_building3,
-            R.drawable.ic_building4, R.drawable.ic_building5, R.drawable.ic_building6,
-            R.drawable.ic_building7, R.drawable.ic_building8,
-            R.drawable.ic_road_ns, R.drawable.ic_road_ew, R.drawable.ic_road_nsew,
-            R.drawable.ic_road_ne, R.drawable.ic_road_nw, R.drawable.ic_road_se, R.drawable.ic_road_sw,
-            R.drawable.ic_road_n, R.drawable.ic_road_e, R.drawable.ic_road_s, R.drawable.ic_road_w,
-            R.drawable.ic_road_nse, R.drawable.ic_road_nsw, R.drawable.ic_road_new, R.drawable.ic_road_sew};
+            /*1*/R.drawable.ic_building1, /*2*/R.drawable.ic_building2, /*3*/R.drawable.ic_building3,
+            /*4*/R.drawable.ic_building4, /*5*/R.drawable.ic_building5, /*6*/R.drawable.ic_building6,
+            /*7*/R.drawable.ic_building7, /*8*/R.drawable.ic_building8,
+            /*9*/R.drawable.ic_road_ns, /*10*/R.drawable.ic_road_ew, /*11*/R.drawable.ic_road_nsew,
+            /*12*/R.drawable.ic_road_ne, /*13*/R.drawable.ic_road_nw, /*14*/R.drawable.ic_road_se,
+            /*15*/R.drawable.ic_road_sw, /*16*/R.drawable.ic_road_n, /*17*/R.drawable.ic_road_e,
+            /*18*/R.drawable.ic_road_s, /*19*/R.drawable.ic_road_w, /*20*/R.drawable.ic_road_nse,
+            /*21*/R.drawable.ic_road_nsw, /*22*/R.drawable.ic_road_new, /*23*/R.drawable.ic_road_sew,
+            /*24*/R.drawable.ic_grass1, /*25*/R.drawable.ic_grass2, /*26*/R.drawable.ic_grass3,
+            /*27*/R.drawable.ic_grass4 };
 
     private List<Structure> structures = Arrays.asList(new Structure[] {
             new Residential(R.drawable.ic_building1),

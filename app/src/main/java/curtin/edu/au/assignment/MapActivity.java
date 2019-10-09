@@ -12,6 +12,9 @@ public class MapActivity extends AppCompatActivity
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_map );
 
+        GameData gd = GameData.getInstance();
+        gd.setMap();
+
         FragmentManager fm = getSupportFragmentManager();
         MapFragment frag = ( MapFragment )fm.findFragmentById( R.id.map );
         if( frag == null )
@@ -19,6 +22,8 @@ public class MapActivity extends AppCompatActivity
             frag = new MapFragment();
             fm.beginTransaction().add( R.id.map, frag ).commit();
         }
+
+
 
     }
 }
