@@ -15,6 +15,15 @@ import java.util.List;
 
 public class MapFragment extends Fragment
 {
+    private SelectorFragment selector;
+    private GameData gd = GameData.getInstance();
+    private MapElement[][] data = gd.getMapElements();
+
+    public MapFragment( SelectorFragment selectorFragment )
+    {
+        selector = selectorFragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup ui, Bundle bundle)
     {
@@ -39,8 +48,8 @@ public class MapFragment extends Fragment
 
     private class MapAdapter extends RecyclerView.Adapter<MapDataViewHolder>
     {
-        private GameData gd = GameData.getInstance();
-        private MapElement[][] data = gd.getMapElements();
+        //private GameData gd = GameData.getInstance();
+        //private MapElement[][] data = gd.getMapElements();
 
         @Override
         public int getItemCount()
@@ -70,8 +79,9 @@ public class MapFragment extends Fragment
 
     private class MapDataViewHolder extends RecyclerView.ViewHolder
     {
-        private ImageView image;
         private GameData gd = GameData.getInstance();
+        private ImageView image;
+        private Structure struc;
 
         public MapDataViewHolder( LayoutInflater li, ViewGroup parent )
         {
@@ -83,12 +93,31 @@ public class MapFragment extends Fragment
             ViewGroup.LayoutParams lp = itemView.getLayoutParams();
             lp.width = size;
             lp.height = size;
+
+            image.setOnClickListener( new View.OnClickListener()
+            {
+                @Override
+                public void onClick( View v )
+                {
+                    struc = selector.getSelection();
+                    int row = getAdapterPosition() % gd.getMapHeight();
+                    int col = getAdapterPosition() / gd.getMapHeight();
+                    data[row][col].setStructure( struc );
+                    bind();
+                }
+            });
         }
 
         //This needs to change from Object
         public void bind( MapElement mapElement )
         {
+            //struc = mapElement.getStructure();
             image.setImageResource( mapElement.getStructure().getImageID() );
+        }
+
+        public void bind()
+        {
+            image.setImageResource( struc.getImageID() );
         }
     }
 }

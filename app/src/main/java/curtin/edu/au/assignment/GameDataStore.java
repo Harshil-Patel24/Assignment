@@ -9,15 +9,17 @@ import java.util.Set;
 import curtin.edu.au.assignment.GameSchema.*;
 public class GameDataStore
 {
-    private GameData gd = GameData.getInstance();
+    private GameData gd;
     private SQLiteDatabase db;
 
     public GameDataStore(){}
 
     public void load( Context context )
     {
+        gd  = GameData.getInstance();
         //Load database
-        this.db = new GameDBHelper( context.getApplicationContext() ).getWritableDatabase();
+        create( context );
+        //this.db = new GameDBHelper( context.getApplicationContext() ).getWritableDatabase();
         //Now read the data in
         GameCursor cursor = new GameCursor( db.query( GameSettingsTable.NAME,
                 null,
@@ -39,6 +41,35 @@ public class GameDataStore
         {
             cursor.close();
         }
+    }
+
+    public void create( Context context )
+    {
+        gd  = GameData.getInstance();
+        //Load database
+        this.db = new GameDBHelper( context.getApplicationContext() ).getWritableDatabase();
+        /*
+        GameCursor cursor = new GameCursor( db.query( GameSettingsTable.NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null ) );
+        try
+        {
+            cursor.moveToFirst();
+            if( !cursor.isAfterLast() )
+            {
+                Settings settings = cursor.getSettings();
+                gd.setSettings( settings );
+            }
+        }
+        finally
+        {
+            cursor.close();
+        }
+        */
     }
 
     //Make sure this isn't adding a new settings entry everytime

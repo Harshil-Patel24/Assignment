@@ -17,6 +17,20 @@ import java.util.ArrayList;
 
 public class SelectorFragment extends Fragment
 {
+    //private StructureData sd = StructureData.getInstance();
+    //private ArrayList<Structure> data = ( ArrayList<Structure> )sd.getStructures();
+    private Structure selection;
+
+    public void setSelection( Structure selected )
+    {
+        selection = selected;
+    }
+
+    public Structure getSelection()
+    {
+        return selection;
+    }
+
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup ui, Bundle bundle )
     {
@@ -39,14 +53,18 @@ public class SelectorFragment extends Fragment
 
     public class SelectorAdapter extends RecyclerView.Adapter<SelectorDataViewHolder>
     {
-        StructureData sd = StructureData.getInstance();
+        private StructureData sd = StructureData.getInstance();
         private ArrayList<Structure> data = ( ArrayList<Structure> )sd.getStructures();
 
         @Override
         public SelectorDataViewHolder onCreateViewHolder( ViewGroup parent, int viewType )
         {
             LayoutInflater li = LayoutInflater.from( getActivity() );
-            return new SelectorDataViewHolder( li, parent );
+            SelectorDataViewHolder vh = new SelectorDataViewHolder( li, parent );
+
+
+
+            return vh;
         }
 
         @Override
@@ -64,6 +82,7 @@ public class SelectorFragment extends Fragment
 
     public class SelectorDataViewHolder extends RecyclerView.ViewHolder
     {
+        private Structure struc = null;
         private ImageView image;
         private TextView description;
 
@@ -73,10 +92,20 @@ public class SelectorFragment extends Fragment
 
             image = itemView.findViewById( R.id.itemImage );
             description = itemView.findViewById( R.id.itemDesc );
+
+            image.setOnClickListener( new View.OnClickListener()
+            {
+                @Override
+                public void onClick( View v )
+                {
+                    selection = struc;
+                }
+            });
         }
 
         public void bind( Structure structure )
         {
+            struc = structure;
             image.setImageResource( structure.getImageID() );
             //Prolly have to FIX THIS UP
             description.setText( structure.toString() );

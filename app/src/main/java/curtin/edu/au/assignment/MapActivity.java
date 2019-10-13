@@ -16,12 +16,6 @@ public class MapActivity extends AppCompatActivity
         gd.setMap();
 
         FragmentManager fm = getSupportFragmentManager();
-        MapFragment fragMap = ( MapFragment )fm.findFragmentById( R.id.map );
-        if( fragMap == null )
-        {
-            fragMap = new MapFragment();
-            fm.beginTransaction().add( R.id.map, fragMap ).commit();
-        }
 
         SelectorFragment fragSelector = ( SelectorFragment )fm.findFragmentById( R.id.selector );
         if( fragSelector == null )
@@ -30,5 +24,18 @@ public class MapActivity extends AppCompatActivity
             fm.beginTransaction().add( R.id.selector, fragSelector ).commit();
         }
 
+        MapFragment fragMap = ( MapFragment )fm.findFragmentById( R.id.map );
+        if( fragMap == null )
+        {
+            fragMap = new MapFragment( fragSelector );
+            fm.beginTransaction().add( R.id.map, fragMap ).commit();
+        }
+
+        StatusFragment fragStatus = ( StatusFragment )fm.findFragmentById( R.id.status );
+        if( fragStatus == null )
+        {
+            fragStatus = new StatusFragment();
+            fm.beginTransaction().add( R.id.status, fragStatus ).commit();
+        }
     }
 }

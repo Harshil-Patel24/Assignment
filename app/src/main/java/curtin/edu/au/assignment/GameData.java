@@ -29,6 +29,8 @@ public class GameData
 
     public Settings getSettings(){ return settings; }
     public GameDataStore getStore(){ return store; }
+    public int getGameTime(){ return gameTime; }
+    public int getMoney(){ return money; }
 
     public void setSettings( Settings inSettings )
     {
@@ -36,6 +38,14 @@ public class GameData
         {
             settings = inSettings;
         }
+    }
+
+    public void incTime(){ gameTime++; }
+    public void setMoney( int inMoney ){ money = inMoney; }
+
+    public void incMoney( int income )
+    {
+        money += income;
     }
 
     //Creates the map array
