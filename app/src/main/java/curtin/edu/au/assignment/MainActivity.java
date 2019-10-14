@@ -1,12 +1,14 @@
 package curtin.edu.au.assignment;
 
+import curtin.edu.au.assignment.database.*;
+import curtin.edu.au.assignment.model.*;
+import curtin.edu.au.assignment.controller.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+
 import android.widget.Button;
 import android.widget.TextView;
 

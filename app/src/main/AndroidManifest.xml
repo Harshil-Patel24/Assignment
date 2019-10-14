@@ -16,9 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MapActivity"></activity>
-        <activity android:name=".SettingsActivity"></activity>
-        <activity android:name=".DetailsActivity"></activity>
+        <activity android:name=".controller.DetailsActivity"></activity>
+        <activity android:name=".controller.MapActivity"></activity>
+        <activity android:name=".controller.SettingsActivity"></activity>
     </application>
 
 </manifest>
