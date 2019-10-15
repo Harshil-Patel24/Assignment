@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
             {
                 store.load( MainActivity.this );
                 //This is to test if the database works
-                startActivity( new Intent( MainActivity.this, SettingsActivity.class ) );
+                startActivity( new Intent( MainActivity.this, MapActivity.class ) );
                 //Loading a game will check to see if there is a game to load first
                 //Display message in "error" if there is one to show
                 //startActivity( new Intent( MainActivity.this, SettingsActivity.class ));

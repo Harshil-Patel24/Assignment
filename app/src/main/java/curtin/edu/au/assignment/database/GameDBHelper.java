@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import curtin.edu.au.assignment.database.GameSchema.*;
+import curtin.edu.au.assignment.model.GameData;
 
 public class GameDBHelper extends SQLiteOpenHelper
 {
@@ -31,8 +32,16 @@ public class GameDBHelper extends SQLiteOpenHelper
                 GameSettingsTable.Cols.SERVICE_COST + " INTEGER, " +
                 GameSettingsTable.Cols.HOUSE_BUILDING_COST + " INTEGER, " +
                 GameSettingsTable.Cols.COMMERCIAL_BUILDING_COST + " INTEGER, " +
-                GameSettingsTable.Cols.ROAD_BUILDING_COST + " INTEGER)" );
+                GameSettingsTable.Cols.ROAD_BUILDING_COST + " INTEGER, " +
+                GameSettingsTable.Cols.GAME_TIME + " INTEGER, " +
+                GameSettingsTable.Cols.MONEY + " INTEGER)" );
 
+        db.execSQL( "CREATE TABLE " + MapElementTable.NAME + "(" +
+                MapElementTable.Cols.ROW_INDEX + " INTEGER, " +
+                MapElementTable.Cols.COLUMN_INDEX + " INTEGER, " +
+                MapElementTable.Cols.STRUCTURE_IMAGE + " INTEGER, " +
+                MapElementTable.Cols.TYPE + " TEXT, " +
+                MapElementTable.Cols.OWNER + " TEXT)" );
     }
 
     @Override

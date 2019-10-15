@@ -2,6 +2,8 @@ package curtin.edu.au.assignment.controller;
 
 import curtin.edu.au.assignment.R;
 import curtin.edu.au.assignment.model.*;
+
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ public class MapFragment extends Fragment
     private SelectorFragment selector;
     private GameData gd = GameData.getInstance();
     private MapElement[][] data = gd.getMapElements();
+    private MapAdapter adapter;
 
     public MapFragment( SelectorFragment selectorFragment )
     {
@@ -38,7 +41,7 @@ public class MapFragment extends Fragment
         rv.setLayoutManager( new GridLayoutManager( getActivity(), gd.getMapHeight(), GridLayoutManager.HORIZONTAL, false ) );
 
         // Create your adapter
-        MapAdapter adapter = new MapAdapter();
+       /* MapAdapter*/ adapter = new MapAdapter();
 
         // Hook it up
         rv.setAdapter(adapter);
@@ -81,12 +84,14 @@ public class MapFragment extends Fragment
     {
         private GameData gd = GameData.getInstance();
         private ImageView image;
+        private ImageView land;
         private Structure struc;
 
         public MapDataViewHolder( LayoutInflater li, ViewGroup parent )
         {
             super( li.inflate( R.layout.grid_cell, parent, false ) );
             image = ( ImageView )itemView.findViewById( R.id.image );
+            land = ( ImageView )itemView.findViewById( R.id.land );
 
             //Add stuff to ensure square images in here (from prac 3)
             int size = parent.getMeasuredHeight() / gd.getMapHeight() + 1;
@@ -97,12 +102,11 @@ public class MapFragment extends Fragment
             image.setOnClickListener( new View.OnClickListener()
             {
                 @Override
-                public void onClick( View v )
-                {
+                public void onClick( View v ) {
                     struc = selector.getSelection();
                     int row = getAdapterPosition() % gd.getMapHeight();
                     int col = getAdapterPosition() / gd.getMapHeight();
-                    data[row][col].setStructure( struc );
+                    data[row][col].setStructure(struc);
                     bind();
                 }
             });
@@ -111,10 +115,14 @@ public class MapFragment extends Fragment
         //This needs to change from Object
         public void bind( MapElement mapElement )
         {
-            //struc = mapElement.getStructure();
-            image.setImageResource( mapElement.getStructure().getImageID() );
+            land.setImageResource( mapElement.getLand().getImageID() );
+            if( mapElement.getStructure() != null )
+            {
+                image.setImageResource( mapElement.getStructure().getImageID() );
+            }
         }
 
+        //Make sure that land is also set
         public void bind()
         {
             image.setImageResource( struc.getImageID() );

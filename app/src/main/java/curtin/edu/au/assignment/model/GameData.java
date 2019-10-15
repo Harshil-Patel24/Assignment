@@ -41,8 +41,8 @@ public class GameData
     }
 
     public void incTime(){ gameTime++; }
+    public void setGameTime( int time ){ gameTime = time; }
     public void setMoney( int inMoney ){ money = inMoney; }
-
     public void incMoney( int income )
     {
         money += income;
@@ -66,6 +66,11 @@ public class GameData
                 }
             }
         }
+    }
+
+    public void setMap( MapElement[][] inMap )
+    {
+        map = inMap;
     }
 
     public int getMapHeight()

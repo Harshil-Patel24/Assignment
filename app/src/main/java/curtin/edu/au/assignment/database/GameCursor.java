@@ -14,6 +14,7 @@ public class GameCursor extends CursorWrapper
 
     public Settings getSettings()
     {
+        GameData gd = GameData.getInstance();
         Settings settings = new Settings();
 
         settings.setMapWidth( getInt( getColumnIndex( GameSettingsTable.Cols.MAP_WIDTH ) ) );
@@ -27,7 +28,48 @@ public class GameCursor extends CursorWrapper
         settings.setHouseBuildingCost( getInt( getColumnIndex( GameSettingsTable.Cols.HOUSE_BUILDING_COST ) ) );
         settings.setCommBuildingCost( getInt( getColumnIndex( GameSettingsTable.Cols.COMMERCIAL_BUILDING_COST ) ) );
         settings.setRoadBuildingCost( getInt( getColumnIndex( GameSettingsTable.Cols.ROAD_BUILDING_COST ) ) );
+        //gd.setGameTime( getInt( getColumnIndex( GameSettingsTable.Cols.GAME_TIME ) ) );
+        //gd.setMoney( getInt( getColumnIndex( GameSettingsTable.Cols.MONEY ) ) );
 
         return settings;
+    }
+
+    public MapElement getMapElement()
+    {
+        MapElement element = new MapElement();
+        Structure structure = null;
+        String type = getString( getColumnIndex( MapElementTable.Cols.TYPE ) );
+        int image = getInt( getColumnIndex( MapElementTable.Cols.STRUCTURE_IMAGE ) );
+
+        if( type.equals( "COMMERCIAL" ) )
+        {
+            structure = new Commercial( image );
+        }
+        else if( type.equals( "RESIDENTIAL" ) )
+        {
+            structure = new Residential( image );
+        }
+        else if( type.equals( "ROAD" ) )
+        {
+            structure = new Road( image );
+        }
+        else if( type.equals( "LAND" ) )
+        {
+            structure = new Land( image );
+        }
+
+        element.setStructure( structure );
+        element.setOwnerName( getString( getColumnIndex( MapElementTable.Cols.OWNER ) ) );
+        return element;
+    }
+
+    public int getColumn()
+    {
+        return getInt( getColumnIndex( MapElementTable.Cols.COLUMN_INDEX ) );
+    }
+
+    public int getRow()
+    {
+        return getInt( getColumnIndex( MapElementTable.Cols.ROW_INDEX ) );
     }
 }

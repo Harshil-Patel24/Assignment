@@ -25,7 +25,7 @@ public class StatusFragment extends Fragment
         final TextView population = ( TextView )view.findViewById( R.id.populationVal );
         final TextView money = ( TextView )view.findViewById( R.id.moneyVal );
         final TextView employment = ( TextView )view.findViewById( R.id.employmentVal );
-        final Button settings = ( Button )view.findViewById( R.id.settings );
+        final Button save = ( Button )view.findViewById( R.id.save );
 
         time.setText( String.valueOf( gd.getGameTime() ) );
         money.setText( String.valueOf( gd.getMoney() ) );
@@ -37,6 +37,15 @@ public class StatusFragment extends Fragment
             {
                 gd.incTime();
                 time.setText( String.valueOf( gd.getGameTime() ) );
+            }
+        });
+
+        save.setOnClickListener( new View.OnClickListener()
+        {
+            @Override
+            public void onClick( View view )
+            {
+                gd.getStore().update();
             }
         });
 

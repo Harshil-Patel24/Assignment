@@ -19,7 +19,23 @@ public class GameSchema
             public static final String HOUSE_BUILDING_COST = "house_building_cost";
             public static final String COMMERCIAL_BUILDING_COST = "commercial_building_cost";
             public static final String ROAD_BUILDING_COST = "road_building_cost";
+            public static final String MONEY = "money";
+            public static final String GAME_TIME = "game_time";
 
+        }
+    }
+
+    public static class MapElementTable
+    {
+        public static final String NAME = "data";
+
+        public static class Cols
+        {
+            public static final String ROW_INDEX = "row_index";
+            public static final String COLUMN_INDEX = "column_index";
+            public static final String STRUCTURE_IMAGE = "structure_image";
+            public static final String TYPE = "type";
+            public static final String OWNER = "owner";
         }
     }
 }
