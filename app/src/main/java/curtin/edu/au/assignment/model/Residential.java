@@ -6,6 +6,7 @@ public class Residential extends Structure
     {
         imageID = id;
         type = "RESIDENTIAL";
+        cost = GameData.getInstance().getSettings().getHouseBuildingCost();
     }
     public String toString(){ return "Residential"; }
 }

@@ -6,6 +6,7 @@ public class Commercial extends Structure
     {
         imageID = id;
         type = "COMMERCIAL";
+        cost = GameData.getInstance().getSettings().getCommBuildingCost();
     }
     public String toString(){ return "Commercial"; }
 }

@@ -1,5 +1,10 @@
 package curtin.edu.au.assignment.model;
 
+import android.content.ContentValues;
+import android.content.Context;
+
+import curtin.edu.au.assignment.controller.SelectorFragment;
+import curtin.edu.au.assignment.controller.StatusFragment;
 import curtin.edu.au.assignment.database.*;
 import java.util.ArrayList;
 
@@ -12,6 +17,10 @@ public class GameData
     private MapElement[][] map;
     private int money;
     private int gameTime;
+    private SelectorFragment selector;
+    private StatusFragment status;
+    private int population;
+    //private Context mapContext;
 
     public static GameData getInstance() { return ourInstance; }
 
@@ -25,12 +34,19 @@ public class GameData
         map = null;
         money = 0;
         gameTime = 0;
+        //mapContext = null;
     }
+
 
     public Settings getSettings(){ return settings; }
     public GameDataStore getStore(){ return store; }
     public int getGameTime(){ return gameTime; }
     public int getMoney(){ return money; }
+    public int getPopulation(){ return getNumResidential() * settings.getFamilySize(); }
+    public SelectorFragment getSelector(){ return selector; }
+    public StatusFragment getStatus(){ return status; }
+
+    //public Context getMapContext(){ return mapContext; }
 
     public void setSettings( Settings inSettings )
     {
@@ -43,10 +59,44 @@ public class GameData
     public void incTime(){ gameTime++; }
     public void setGameTime( int time ){ gameTime = time; }
     public void setMoney( int inMoney ){ money = inMoney; }
-    public void incMoney( int income )
+    public void incMoney( int income ){ money += income; }
+    public void setSelector( SelectorFragment selectorFragment ){ selector = selectorFragment; }
+    public void setStatus( StatusFragment statusFragment ){ status = statusFragment; }
+    //public void setMapContext( Context con ){ mapContext = con; }
+
+    public int getNumResidential()
     {
-        money += income;
+        int num = 0;
+        for( int ii = 0; ii < map.length; ii++ )
+        {
+            for( int jj = 0; jj < map[ii].length; jj++ )
+            {
+                if( map[ii][jj].getStructure().getType().equals( "RESIDENTIAL" ) )
+                {
+                    num++;
+                }
+            }
+        }
+        return num;
     }
+
+    public int getNumCommercial()
+    {
+        int num = 0;
+        for( int ii = 0; ii < map.length; ii++ )
+        {
+            for( int jj = 0; jj < map[ii].length; jj++ )
+            {
+                if( map[ii][jj].getStructure().getType().equals( "COMMERCIAL" ) )
+                {
+                    num++;
+                }
+            }
+        }
+        return num;
+    }
+
+    public void incPopulation( int increase ){ population += increase; }
 
     //Creates the map array
     public void setMap()

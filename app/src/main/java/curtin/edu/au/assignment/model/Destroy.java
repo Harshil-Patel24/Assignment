@@ -8,6 +8,7 @@ public class Destroy extends Structure
     {
         imageID = R.drawable.ic_bomb;
         type = "DESTROY";
+        cost = 0;
     }
 
     public String toString()

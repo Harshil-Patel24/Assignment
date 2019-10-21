@@ -6,6 +6,7 @@ public class Road extends Structure
     {
         imageID = id;
         type = "ROAD";
+        cost = GameData.getInstance().getSettings().getRoadBuildingCost();
     }
     public String toString(){ return "Road"; }
 }

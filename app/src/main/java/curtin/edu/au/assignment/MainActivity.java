@@ -18,9 +18,6 @@ public class MainActivity extends AppCompatActivity
 
     private Button newGame;
     private Button loadGame;
-    private TextView title;
-    private TextView author;
-    private TextView error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,9 +31,6 @@ public class MainActivity extends AppCompatActivity
 
         newGame = ( Button )findViewById( R.id.newGameButton );
         loadGame = ( Button )findViewById( R.id.loadGameButton);
-        title = ( TextView )findViewById( R.id.title );
-        author = ( TextView )findViewById( R.id.author );
-        error = ( TextView )findViewById( R.id.error );
 
         newGame.setOnClickListener(new View.OnClickListener()
         {
@@ -44,6 +38,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick( View view )
             {
                 store.create( MainActivity.this );
+                store.clear();
                 //A new game will open up the settings activity to allow user to change settings before starting
                 startActivity( new Intent( MainActivity.this, SettingsActivity.class ));
             }
@@ -54,12 +49,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                //TASK
                 store.load( MainActivity.this );
-                //This is to test if the database works
                 startActivity( new Intent( MainActivity.this, MapActivity.class ) );
                 //Loading a game will check to see if there is a game to load first
                 //Display message in "error" if there is one to show
-                //startActivity( new Intent( MainActivity.this, SettingsActivity.class ));
             }
         });
     }

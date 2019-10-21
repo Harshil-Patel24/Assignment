@@ -28,8 +28,8 @@ public class GameCursor extends CursorWrapper
         settings.setHouseBuildingCost( getInt( getColumnIndex( GameSettingsTable.Cols.HOUSE_BUILDING_COST ) ) );
         settings.setCommBuildingCost( getInt( getColumnIndex( GameSettingsTable.Cols.COMMERCIAL_BUILDING_COST ) ) );
         settings.setRoadBuildingCost( getInt( getColumnIndex( GameSettingsTable.Cols.ROAD_BUILDING_COST ) ) );
-        //gd.setGameTime( getInt( getColumnIndex( GameSettingsTable.Cols.GAME_TIME ) ) );
-        //gd.setMoney( getInt( getColumnIndex( GameSettingsTable.Cols.MONEY ) ) );
+        gd.setGameTime( getInt( getColumnIndex( GameSettingsTable.Cols.GAME_TIME ) ) );
+        gd.setMoney( getInt( getColumnIndex( GameSettingsTable.Cols.MONEY ) ) );
 
         return settings;
     }
@@ -53,7 +53,7 @@ public class GameCursor extends CursorWrapper
         {
             structure = new Road( image );
         }
-        else if( type.equals( "LAND" ) )
+        else//( type.equals( "LAND" ) )
         {
             structure = new Land( image );
         }
@@ -72,4 +72,7 @@ public class GameCursor extends CursorWrapper
     {
         return getInt( getColumnIndex( MapElementTable.Cols.ROW_INDEX ) );
     }
+    public int getMoney(){ return getInt( getColumnIndex( GameSettingsTable.Cols.MONEY ) ); }
+    public int getGameTime(){ return getInt( getColumnIndex( GameSettingsTable.Cols.GAME_TIME ) ); }
+
 }

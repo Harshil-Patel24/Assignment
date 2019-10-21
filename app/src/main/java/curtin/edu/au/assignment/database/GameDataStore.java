@@ -4,9 +4,8 @@ import curtin.edu.au.assignment.model.*;
 import curtin.edu.au.assignment.database.GameSchema.*;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
-import static java.sql.Types.NULL;
 
 public class GameDataStore
 {
@@ -18,11 +17,9 @@ public class GameDataStore
     public void load( Context context )
     {
         gd  = GameData.getInstance();
-        MapElement[][] map;
 
         //Load database
         create( context );
-        //this.db = new GameDBHelper( context.getApplicationContext() ).getWritableDatabase();
         //Now read the data in
         GameCursor settingsCursor = new GameCursor( db.query( GameSettingsTable.NAME,
                 null,
@@ -38,6 +35,8 @@ public class GameDataStore
             {
                 Settings settings = settingsCursor.getSettings();
                 gd.setSettings( settings );
+                gd.setMoney( settingsCursor.getMoney() );
+                gd.setGameTime( settingsCursor.getGameTime() );
             }
         }
         finally
@@ -49,7 +48,8 @@ public class GameDataStore
         int height = settings.getMapHeight();
         int width = settings.getMapWidth();
 
-        map = new MapElement[height][width];
+        gd.setMap();
+        MapElement[][] map = gd.getMapElements();
 
         GameCursor mapCursor = new GameCursor( db.query( MapElementTable.NAME,
                 null,
@@ -70,42 +70,29 @@ public class GameDataStore
                 map[row][column] = mapCursor.getMapElement();
             }
 
-            gd.setMap( map );
         }
         finally
         {
             mapCursor.close();
         }
+        gd.setMap( map );
     }
 
     public void create( Context context )
     {
         gd  = GameData.getInstance();
+
+        //this.db.execSQL( "DROP TABLE IF EXISTS " + GameSettingsTable.NAME );
+        //this.db.execSQL( "DROP TABLE IF EXISTS " + MapElementTable.NAME );
+
         //Load database
         this.db = new GameDBHelper( context.getApplicationContext() ).getWritableDatabase();
+    }
 
-        /*
-        GameCursor cursor = new GameCursor( db.query( GameSettingsTable.NAME,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null ) );
-        try
-        {
-            cursor.moveToFirst();
-            if( !cursor.isAfterLast() )
-            {
-                Settings settings = cursor.getSettings();
-                gd.setSettings( settings );
-            }
-        }
-        finally
-        {
-            cursor.close();
-        }
-        */
+    public void clear()
+    {
+        db.execSQL( "DELETE FROM " + GameSettingsTable.NAME );
+        db.execSQL( "DELETE FROM " + MapElementTable.NAME );
     }
 
     //Make sure this isn't adding a new settings entry everytime
@@ -123,7 +110,8 @@ public class GameDataStore
         cv.put( GameSettingsTable.Cols.HOUSE_BUILDING_COST, settings.getHouseBuildingCost() );
         cv.put( GameSettingsTable.Cols.COMMERCIAL_BUILDING_COST, settings.getCommBuildingCost() );
         cv.put( GameSettingsTable.Cols.ROAD_BUILDING_COST, settings.getRoadBuildingCost() );
-
+        cv.put( GameSettingsTable.Cols.MONEY, gd.getMoney() );
+        cv.put( GameSettingsTable.Cols.GAME_TIME, gd.getGameTime() );
         GameCursor cursor = new GameCursor( db.query( GameSettingsTable.NAME,
                 null,
                 null,
@@ -146,36 +134,51 @@ public class GameDataStore
     public void update()
     {
         gd = GameData.getInstance();
+
+        ContentValues cv = new ContentValues();
+
+        cv.put( GameSettingsTable.Cols.MONEY, gd.getMoney() );
+        cv.put( GameSettingsTable.Cols.GAME_TIME, gd.getGameTime() );
+
+
+        String[] whereValue = { String.valueOf( gd.getSettings().getMapWidth() ) };
+        db.update( GameSettingsTable.NAME, cv, GameSettingsTable.Cols.MAP_WIDTH + " = ?", whereValue );
+
         MapElement[][] map = gd.getMapElements();
         addSettings( gd.getSettings() );
 
         for( int ii = 0; ii < map.length; ii++ )
         {
-            for( int jj = 0; jj < map.length; jj++ )
+            for( int jj = 0; jj < map[ii].length; jj++ )
             {
                 updateMapElement( map[ii][jj], ii, jj );
             }
         }
     }
 
-    public void updateMapElement( MapElement element, int col, int row )
+    public void updateMapElement( MapElement element, int row, int col )
     {
         ContentValues cv = new ContentValues();
         cv.put( MapElementTable.Cols.COLUMN_INDEX, col );
         cv.put( MapElementTable.Cols.ROW_INDEX, row );
         cv.put( MapElementTable.Cols.OWNER, element.getOwnerName() );
-        if( element.getStructure() != null )
-        {
-            cv.put( MapElementTable.Cols.TYPE, element.getStructure().getType() );
-            cv.put( MapElementTable.Cols.STRUCTURE_IMAGE, element.getStructure().getImageID() );
-        }
-        else
-        {
-            cv.put( MapElementTable.Cols.TYPE, NULL );
-            //Maybe change this to null somehow
-            cv.put( MapElementTable.Cols.STRUCTURE_IMAGE, NULL );
-        }
 
-        db.update( MapElementTable.NAME, cv,MapElementTable.Cols.COLUMN_INDEX + " = ? AND " + MapElementTable.Cols.ROW_INDEX + " = ?", new String[]{ String.valueOf( col ), String.valueOf( row ) } );
+        cv.put( MapElementTable.Cols.TYPE, element.getStructure().getType() );
+        cv.put( MapElementTable.Cols.STRUCTURE_IMAGE, element.getStructure().getImageID() );
+
+        db.update( MapElementTable.NAME, cv,MapElementTable.Cols.COLUMN_INDEX + " = " + String.valueOf( col ) + " AND " + MapElementTable.Cols.ROW_INDEX + " = " + String.valueOf( row ), null/*new String[]{ String.valueOf( col ), String.valueOf( row ) }*/ );
+    }
+
+    public void updateStatus()
+    {
+        addSettings( gd.getSettings() );
+        ContentValues cv = new ContentValues();
+
+        cv.put( GameSettingsTable.Cols.MONEY, gd.getMoney() );
+        cv.put( GameSettingsTable.Cols.GAME_TIME, gd.getGameTime() );
+
+
+        String[] whereValue = { String.valueOf( gd.getSettings().getMapWidth() ) };
+        db.update( GameSettingsTable.NAME, cv, GameSettingsTable.Cols.MAP_WIDTH + " = ?", whereValue );
     }
 }

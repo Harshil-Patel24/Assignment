@@ -87,6 +87,9 @@ public class SettingsActivity extends AppCompatActivity
                     settings.setCommBuildingCost( Integer.parseInt( commBuildingCost.getText().toString() ) );
                     settings.setRoadBuildingCost( Integer.parseInt( roadBuildingCost.getText().toString() ) );
 
+                    gd.setMap();
+                    gd.setMoney( gd.getSettings().getInitialMoney() );
+                    //gd.setMoney( Integer.parseInt( initialMoney.getText().toString() ) );
                     store.addSettings( settings );
 
                     //Start the map activity after settings are decided
@@ -99,16 +102,5 @@ public class SettingsActivity extends AppCompatActivity
                 }
             }
         });
-
-        /*
-        FragmentManager fm = getSupportFragmentManager();
-        SettingsFragment frag = ( SettingsFragment )fm.findFragmentById( R.id.settings );
-
-        if( frag == null )
-        {
-            frag = new SettingsFragment();
-            fm.beginTransaction().add( R.id.settings, frag ).commit();
-        }
-        */
     }
 }

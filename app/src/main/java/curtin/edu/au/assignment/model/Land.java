@@ -6,6 +6,7 @@ public class Land extends Structure
     {
         imageID = id;
         type = "LAND";
+        cost = 0;
     }
     public String toString(){ return "Land"; }
 }

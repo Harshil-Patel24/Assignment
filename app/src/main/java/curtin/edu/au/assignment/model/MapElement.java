@@ -1,11 +1,14 @@
 package curtin.edu.au.assignment.model;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import java.util.Random;
 
 public class MapElement
 {
     private Structure structure;
-    private Land land;
+    private Bitmap image;
     private String ownerName;
 
     public MapElement()
@@ -18,38 +21,40 @@ public class MapElement
         switch( rand )
         {
             case 0:
-                land = new Land( StructureData.DRAWABLES[24] );
+                structure = new Land( StructureData.DRAWABLES[24] );
                 break;
             case 1:
-                land = new Land( StructureData.DRAWABLES[25] );
+                structure = new Land( StructureData.DRAWABLES[25] );
                 break;
             case 2:
-                land = new Land( StructureData.DRAWABLES[26] );
+                structure = new Land( StructureData.DRAWABLES[26] );
                 break;
             case 3:
-                land = new Land( StructureData.DRAWABLES[27] );
+                structure = new Land( StructureData.DRAWABLES[27] );
                 break;
             default:
-                land = new Land( StructureData.DRAWABLES[24] );
+                structure = new Land( StructureData.DRAWABLES[24] );
                 break;
         }
+
+        setOwnerName( "Government" );
+        //image = BitmapFactory.decodeResource( GameData.getInstance().getMapContext().getResources(), structure.getImageID() );
     }
 
     public Structure getStructure(){ return structure; }
-    public Land getLand(){ return land; }
-    //public Bitmap getImage(){ return image; }
+    public Bitmap getImage(){ return image; }
     public String getOwnerName(){ return ownerName; }
 
     public void setStructure( Structure struc )
     {
         structure = struc;
     }
-/*
+
     public void setImage( Bitmap img )
     {
         image = img;
     }
-*/
+
     public void setOwnerName( String name )
     {
         ownerName = name;
