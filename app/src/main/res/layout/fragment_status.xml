@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#D3D3D3"
+    >
 
     <TextView
         android:id="@+id/time"
@@ -13,7 +15,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:text="Time: "
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginLeft="8dp"
+        android:typeface="monospace"
+        />
 
     <TextView
         android:id="@+id/timeVal"
@@ -22,7 +26,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@id/time"
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginLeft="8dp"
+        android:typeface="monospace"
+        />
 
     <Button
         android:id="@+id/timeIncrement"
@@ -31,7 +37,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="Increment Time"
-        android:layout_marginRight="8dp"/>
+        android:layout_marginRight="8dp"
+        android:typeface="monospace"
+        />
 
     <TextView
         android:id="@+id/money"
@@ -41,7 +49,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:text="Money: "
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginLeft="8dp"
+        android:typeface="monospace"
+        />
 
     <TextView
         android:id="@+id/moneyVal"
@@ -50,7 +60,9 @@
         app:layout_constraintTop_toBottomOf="@+id/time"
         app:layout_constraintLeft_toRightOf="@id/money"
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginLeft="8dp"
+        android:typeface="monospace"
+        />
 
     <TextView
         android:id="@+id/income"
@@ -59,7 +71,9 @@
         app:layout_constraintTop_toBottomOf="@+id/time"
         app:layout_constraintLeft_toRightOf="@id/moneyVal"
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginLeft="8dp"
+        android:typeface="monospace"
+        />
 
 
     <TextView
@@ -70,7 +84,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:text="Population: "
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="8dp"
+        android:typeface="monospace"
+        />
 
     <TextView
         android:id="@+id/populationVal"
@@ -79,7 +95,9 @@
         app:layout_constraintTop_toBottomOf="@id/money"
         app:layout_constraintLeft_toRightOf="@id/population"
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="8dp"
+        android:typeface="monospace"
+        />
 
     <TextView
         android:id="@+id/employment"
@@ -89,7 +107,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:text="Employment: "
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="8dp"
+        android:typeface="monospace"
+        />
 
     <TextView
         android:id="@+id/employmentVal"
@@ -98,17 +118,21 @@
         app:layout_constraintTop_toBottomOf="@id/population"
         app:layout_constraintLeft_toRightOf="@id/employment"
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="8dp"
+        android:typeface="monospace"
+        />
 
     <Button
-        android:id="@+id/save"
+        android:id="@+id/mainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/timeIncrement"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
-        android:text="Save"/>
+        android:text="Main Menu"
+        android:typeface="monospace"
+        />
 
     <TextView
         android:id="@+id/error"
@@ -118,6 +142,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:textColor="#FFFF0000"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:typeface="monospace"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

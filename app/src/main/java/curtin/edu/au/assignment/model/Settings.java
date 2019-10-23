@@ -2,20 +2,6 @@ package curtin.edu.au.assignment.model;
 
 public class Settings
 {
-    /*
-    //For use in the ArrayList of data
-    public static final int MAP_HEIGHT = 0;
-    public static final int MAP_WIDTH = 1;
-    public static final int INITIAL_MONEY = 2;
-    public static final int FAMILY_SIZE = 3;
-    public static final int SHOP_SIZE = 4;
-    public static final int SALARY = 5;
-    public static final int TAX_RATE = 6;
-    public static final int SERVICE_COST = 7;
-    public static final int HOUSE_BUILDING_COST = 8;
-    public static final int COMM_BUILDING_COST = 9;
-    public static final int ROAD_BUILDING_COST = 10;
-*/
     private int mapHeight;
     private int mapWidth;
     private int initialMoney;
@@ -31,7 +17,6 @@ public class Settings
     //Initially settings
     public Settings()
     {
-        //Maybe set these to be as values in edit text in activity_settings
         //These are the default values
         mapHeight = 10;
         mapWidth = 50;
@@ -46,6 +31,9 @@ public class Settings
         roadBuildingCost = 20;
     }
 
+    /**
+     * Accessors for the settings fields
+     */
     public int getMapHeight(){ return mapHeight; }
     public int getMapWidth(){ return mapWidth; }
     public int getInitialMoney(){ return initialMoney; }
@@ -58,6 +46,9 @@ public class Settings
     public int getCommBuildingCost(){ return commBuildingCost; }
     public int getRoadBuildingCost(){ return roadBuildingCost; }
 
+    /**
+     * The following are mutators for the fields
+     */
     public void setMapHeight( int height )
     {
         if( height > 0 )

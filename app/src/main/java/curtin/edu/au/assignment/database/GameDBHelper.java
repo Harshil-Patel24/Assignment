@@ -5,8 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import curtin.edu.au.assignment.database.GameSchema.*;
-import curtin.edu.au.assignment.model.GameData;
 
+/**
+ * The database helper for this game
+ */
 public class GameDBHelper extends SQLiteOpenHelper
 {
     private static final int VERSION = 1;
@@ -21,6 +23,7 @@ public class GameDBHelper extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db)
     {
 
+        //This creates a table foe the game settings and stats
         db.execSQL( "CREATE TABLE " + GameSettingsTable.NAME + "(" +
                 GameSettingsTable.Cols.MAP_WIDTH + " INTEGER, " +
                 GameSettingsTable.Cols.MAP_HEIGHT + " INTEGER, " +
@@ -36,14 +39,20 @@ public class GameDBHelper extends SQLiteOpenHelper
                 GameSettingsTable.Cols.GAME_TIME + " INTEGER, " +
                 GameSettingsTable.Cols.MONEY + " INTEGER)" );
 
+        //This creates a table for the map elements, ie. this will represent the map
         db.execSQL( "CREATE TABLE " + MapElementTable.NAME + "(" +
                 MapElementTable.Cols.ROW_INDEX + " INTEGER, " +
                 MapElementTable.Cols.COLUMN_INDEX + " INTEGER, " +
                 MapElementTable.Cols.STRUCTURE_IMAGE + " INTEGER, " +
                 MapElementTable.Cols.TYPE + " TEXT, " +
-                MapElementTable.Cols.OWNER + " TEXT)" );
+                MapElementTable.Cols.OWNER + " TEXT, " +
+                MapElementTable.Cols.IMAGE + " BLOB)" );
     }
 
+    /**
+     * We do not need an onUpgrade for the scope of this assignment as we will just stick to
+     * our SQLite database
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int v1, int v2)
     {

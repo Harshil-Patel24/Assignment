@@ -1,7 +1,18 @@
 package curtin.edu.au.assignment.database;
 
+/**
+ * This is a schema class for the database
+ * This is basically just full of constants so that we don't misspell any database queries and cause
+ * errors during runtime
+ *
+ * Having constants makes the program more secure and less vulnerable to injection attacks and also
+ * turns any basic misspelling error from runtime error into a compiler error, and so keeps the database safe
+ */
 public class GameSchema
 {
+    /**
+     * This represents all of the setting and statistics
+     */
     public static class GameSettingsTable
     {
         public static final String NAME = "settings";
@@ -25,6 +36,9 @@ public class GameSchema
         }
     }
 
+    /**
+     * This represents all of the map elements in the map
+     */
     public static class MapElementTable
     {
         public static final String NAME = "data";
@@ -36,6 +50,7 @@ public class GameSchema
             public static final String STRUCTURE_IMAGE = "structure_image";
             public static final String TYPE = "type";
             public static final String OWNER = "owner";
+            public static final String IMAGE = "image";
         }
     }
 }

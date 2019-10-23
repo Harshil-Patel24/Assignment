@@ -15,10 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+
+/**
+ * This fragment is at the bottom in the map activity
+ */
 public class SelectorFragment extends Fragment
 {
-    //private StructureData sd = StructureData.getInstance();
-    //private ArrayList<Structure> data = ( ArrayList<Structure> )sd.getStructures();
     private Structure selection;
 
     public void setSelection( Structure selected )
@@ -62,8 +64,6 @@ public class SelectorFragment extends Fragment
             LayoutInflater li = LayoutInflater.from( getActivity() );
             SelectorDataViewHolder vh = new SelectorDataViewHolder( li, parent );
 
-
-
             return vh;
         }
 
@@ -82,6 +82,7 @@ public class SelectorFragment extends Fragment
 
     public class SelectorDataViewHolder extends RecyclerView.ViewHolder
     {
+        //struc is the currently selected structure
         private Structure struc = null;
         private ImageView image;
         private TextView description;
@@ -93,6 +94,9 @@ public class SelectorFragment extends Fragment
             image = itemView.findViewById( R.id.itemImage );
             description = itemView.findViewById( R.id.itemDesc );
 
+            /**
+             * On clicking the structure it will set to the selected "struc"
+             */
             image.setOnClickListener( new View.OnClickListener()
             {
                 @Override
@@ -107,7 +111,6 @@ public class SelectorFragment extends Fragment
         {
             struc = structure;
             image.setImageResource( structure.getImageID() );
-            //Prolly have to FIX THIS UP
             description.setText( structure.toString() );
         }
     }

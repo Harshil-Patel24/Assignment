@@ -4,6 +4,8 @@ import curtin.edu.au.assignment.model.*;
 import curtin.edu.au.assignment.database.GameSchema.*;
 import android.database.Cursor;
 import android.database.CursorWrapper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 public class GameCursor extends CursorWrapper
 {
@@ -12,6 +14,9 @@ public class GameCursor extends CursorWrapper
         super( cursor );
     }
 
+    /**
+     * Gets the settings object and returns it
+     */
     public Settings getSettings()
     {
         GameData gd = GameData.getInstance();
@@ -34,6 +39,9 @@ public class GameCursor extends CursorWrapper
         return settings;
     }
 
+    /**
+     * Creates a map element using the values in the cursor
+     */
     public MapElement getMapElement()
     {
         MapElement element = new MapElement();
@@ -53,21 +61,30 @@ public class GameCursor extends CursorWrapper
         {
             structure = new Road( image );
         }
-        else//( type.equals( "LAND" ) )
+        else
         {
             structure = new Land( image );
         }
 
         element.setStructure( structure );
         element.setOwnerName( getString( getColumnIndex( MapElementTable.Cols.OWNER ) ) );
+
+        //Must get bitmap by converting it from a byte array
+        byte[] ba = getBlob( getColumnIndex( MapElementTable.Cols.IMAGE ) );
+        Bitmap bm = BitmapFactory.decodeByteArray( ba, 0, ba.length );
+
+        element.setImage( bm );
+
         return element;
     }
 
+    /**
+     * The following are accessors for some fields
+     */
     public int getColumn()
     {
         return getInt( getColumnIndex( MapElementTable.Cols.COLUMN_INDEX ) );
     }
-
     public int getRow()
     {
         return getInt( getColumnIndex( MapElementTable.Cols.ROW_INDEX ) );

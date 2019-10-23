@@ -1,12 +1,11 @@
 package curtin.edu.au.assignment.model;
 
-import android.content.ContentValues;
-import android.content.Context;
-
+import java.util.Random;
+import java.util.*;
 import curtin.edu.au.assignment.controller.SelectorFragment;
 import curtin.edu.au.assignment.controller.StatusFragment;
 import curtin.edu.au.assignment.database.*;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class GameData
 {
@@ -19,25 +18,34 @@ public class GameData
     private int gameTime;
     private SelectorFragment selector;
     private StatusFragment status;
-    private int population;
-    //private Context mapContext;
+    private Random rand;
+    //private int population;
+
+
+    //private long debugInt;
+    //public long getDebugInt(){ return debugInt; };
+    //public void setDebugInt( long in ){ debugInt = in; }
+
 
     public static GameData getInstance() { return ourInstance; }
 
-    /*
+    /**
     * Initialise the gamedata to be all default settings
     */
     private GameData()
     {
         settings = new Settings();
         store = new GameDataStore();
+        rand = new Random();
+        rand.setSeed( System.currentTimeMillis() );
         map = null;
         money = 0;
         gameTime = 0;
-        //mapContext = null;
     }
 
-
+    /**
+     * Accessors
+     */
     public Settings getSettings(){ return settings; }
     public GameDataStore getStore(){ return store; }
     public int getGameTime(){ return gameTime; }
@@ -45,24 +53,7 @@ public class GameData
     public int getPopulation(){ return getNumResidential() * settings.getFamilySize(); }
     public SelectorFragment getSelector(){ return selector; }
     public StatusFragment getStatus(){ return status; }
-
-    //public Context getMapContext(){ return mapContext; }
-
-    public void setSettings( Settings inSettings )
-    {
-        if( settings != null )
-        {
-            settings = inSettings;
-        }
-    }
-
-    public void incTime(){ gameTime++; }
-    public void setGameTime( int time ){ gameTime = time; }
-    public void setMoney( int inMoney ){ money = inMoney; }
-    public void incMoney( int income ){ money += income; }
-    public void setSelector( SelectorFragment selectorFragment ){ selector = selectorFragment; }
-    public void setStatus( StatusFragment statusFragment ){ status = statusFragment; }
-    //public void setMapContext( Context con ){ mapContext = con; }
+    public int nextRand(){ return rand.nextInt(); }
 
     public int getNumResidential()
     {
@@ -96,9 +87,56 @@ public class GameData
         return num;
     }
 
-    public void incPopulation( int increase ){ population += increase; }
+    public int getMapHeight()
+    {
+        if( map != null )
+        {
+            return map.length;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 
-    //Creates the map array
+    public MapElement[][] getMapElements()
+    {
+        return map;
+    }
+
+    public int getCount()
+    {
+        int count = 0;
+        if( map != null )
+        {
+            count = map.length * map[0].length;
+        }
+        return count;
+    }
+
+    /**
+     * Mutators
+     */
+    public void setSettings( Settings inSettings )
+    {
+        if( settings != null )
+        {
+            settings = inSettings;
+        }
+    }
+    public void incTime(){ gameTime++; }
+    public void setGameTime( int time ){ gameTime = time; }
+    public void setMoney( int inMoney ){ money = inMoney; }
+    public void incMoney( int income ){ money += income; }
+
+    public void setSelector( SelectorFragment selectorFragment ){ selector = selectorFragment; }
+
+    public void setStatus( StatusFragment statusFragment ){ status = statusFragment; }
+
+    /*
+    public void incPopulation( int increase ){ population += increase; }
+    */
+
     public void setMap()
     {
         int width = settings.getMapWidth();
@@ -122,19 +160,7 @@ public class GameData
     {
         map = inMap;
     }
-
-    public int getMapHeight()
-    {
-        if( map != null )
-        {
-            return map.length;
-        }
-        else
-        {
-            return 0;
-        }
-    }
-
+    /*
     public int getMapWidth()
     {
         if( map[0] != null )
@@ -146,22 +172,9 @@ public class GameData
             return 0;
         }
     }
+    */
 
-    public MapElement[][] getMapElements()
-    {
-        return map;
-    }
-
-    public int getCount()
-    {
-        int count = 0;
-        if( map != null )
-        {
-            count = map.length * map[0].length;
-        }
-        return count;
-    }
-
+    /*
     public ArrayList<MapElement> getMapList()
     {
         ArrayList<MapElement> list = new ArrayList<>();
@@ -175,4 +188,5 @@ public class GameData
 
         return list;
     }
+    */
 }

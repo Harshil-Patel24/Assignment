@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * The settings activity
+ */
 public class SettingsActivity extends AppCompatActivity
 {
     private GameData gd = GameData.getInstance();
@@ -39,6 +42,7 @@ public class SettingsActivity extends AppCompatActivity
         final Settings settings = gd.getSettings();
         final GameDataStore store = gd.getStore();
 
+        //Initialise all variables (all views)
         start = ( Button )findViewById( R.id.start );
         error = ( TextView )findViewById( R.id.error );
 
@@ -54,7 +58,7 @@ public class SettingsActivity extends AppCompatActivity
         commBuildingCost = ( EditText )findViewById( R.id.commBuildingCost );
         roadBuildingCost = ( EditText )findViewById( R.id.roadBuildingCost );
 
-        //Display the current defaults to the player
+        //Display the current defaults to the player via the views
         mapHeight.setText( String.valueOf( settings.getMapHeight() ) );
         mapWidth.setText( String.valueOf( settings.getMapWidth() ) );
         initialMoney.setText( String.valueOf( settings.getInitialMoney() ) );
@@ -67,6 +71,10 @@ public class SettingsActivity extends AppCompatActivity
         commBuildingCost.setText( String.valueOf( settings.getCommBuildingCost() ) );
         roadBuildingCost.setText( String.valueOf( settings.getRoadBuildingCost() ) );
 
+        /**
+        * The start button should launch the map activity after settings all of the settings
+        * to the chosen values
+        */
         start.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -75,6 +83,7 @@ public class SettingsActivity extends AppCompatActivity
                 String errorMessage = null;
                 try
                 {
+                    //Get all of the settings from the inputs (if valid otherwise set an error message
                     settings.setMapWidth( ( Integer.parseInt( mapWidth.getText().toString() ) ) );
                     settings.setMapHeight( Integer.parseInt( mapHeight.getText().toString() ) );
                     settings.setInitialMoney( Integer.parseInt( initialMoney.getText().toString() ) );
@@ -87,9 +96,11 @@ public class SettingsActivity extends AppCompatActivity
                     settings.setCommBuildingCost( Integer.parseInt( commBuildingCost.getText().toString() ) );
                     settings.setRoadBuildingCost( Integer.parseInt( roadBuildingCost.getText().toString() ) );
 
+                    //Sets the map now that the height and width are set
                     gd.setMap();
+                    //Sets the money now that initial money is set
                     gd.setMoney( gd.getSettings().getInitialMoney() );
-                    //gd.setMoney( Integer.parseInt( initialMoney.getText().toString() ) );
+                    //Save settings to the database
                     store.addSettings( settings );
 
                     //Start the map activity after settings are decided

@@ -1,39 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D3D3D3"
-    >
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/settingsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/start"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
+        android:text="Settings"
         android:textSize="48sp"
         android:typeface="monospace"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/start"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start"
-        app:layout_constraintTop_toTopOf="@id/settingsText"
-        app:layout_constraintBottom_toBottomOf="@id/settingsText"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/settingsText"
         android:layout_marginRight="8dp"
+        android:text="Start"
         android:typeface="monospace"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/settingsText"
+        app:layout_constraintLeft_toRightOf="@id/settingsText"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/settingsText" />
 
     <TextView
         android:id="@+id/error"
@@ -42,154 +39,134 @@
         android:layout_marginTop="8dp"
         android:text=""
         android:textColor="#FFFF0000"
+        android:typeface="monospace"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settingsText"
-        android:typeface="monospace"
-        />
+        app:layout_constraintTop_toBottomOf="@id/settingsText" />
 
     <TextView
         android:id="@+id/mapWidthText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Map Width:"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settingsText"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="8dp"
+        android:text="Map Width:"
         android:typeface="monospace"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsText" />
 
     <TextView
         android:id="@+id/mapHeightText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Map Height:"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mapWidthText"
+        android:layout_marginRight="8dp"
+        android:text="Map Height:"
         android:typeface="monospace"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mapWidthText" />
 
     <TextView
         android:id="@+id/initialMoneyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Initial Money:"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mapHeightText"
+        android:layout_marginRight="8dp"
+        android:text="Initial Money:"
         android:typeface="monospace"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mapHeightText" />
 
     <TextView
         android:id="@+id/familySizeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Family Size:"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/initialMoneyText"
+        android:layout_marginRight="8dp"
+        android:text="Family Size:"
         android:typeface="monospace"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/initialMoneyText" />
 
     <TextView
         android:id="@+id/shopSizeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Shop Size:"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/familySizeText"
+        android:layout_marginRight="8dp"
+        android:text="Shop Size:"
         android:typeface="monospace"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/familySizeText" />
 
     <TextView
         android:id="@+id/salaryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Salary:"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/shopSizeText"
+        android:layout_marginRight="8dp"
+        android:text="Salary:"
         android:typeface="monospace"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shopSizeText" />
 
     <TextView
         android:id="@+id/taxRateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tax Rate:"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/salaryText"
+        android:text="Tax Rate:"
         android:typeface="monospace"
-        />
+        app:layout_constraintStart_toStartOf="@+id/serviceCostText"
+        app:layout_constraintTop_toBottomOf="@id/settingsText" />
 
     <TextView
         android:id="@+id/serviceCostText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Service Cost:"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/taxRateText"
+        android:text="Service Cost:"
         android:typeface="monospace"
-        />
+        app:layout_constraintStart_toStartOf="@+id/houseBuildingCostText"
+        app:layout_constraintTop_toBottomOf="@id/taxRateText" />
 
     <TextView
         android:id="@+id/houseBuildingCostText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="House Building Cost:"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/serviceCostText"
+        android:text="House Building Cost:"
         android:typeface="monospace"
-        />
+        app:layout_constraintStart_toStartOf="@+id/commBuildingCostText"
+        app:layout_constraintTop_toBottomOf="@id/serviceCostText" />
 
     <TextView
         android:id="@+id/commBuildingCostText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Commercial Building Cost:"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/houseBuildingCostText"
+        android:text="Commercial Building Cost:"
         android:typeface="monospace"
-        />
+        app:layout_constraintStart_toStartOf="@+id/roadBuildingCostText"
+        app:layout_constraintTop_toBottomOf="@id/houseBuildingCostText" />
 
     <TextView
         android:id="@+id/roadBuildingCostText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Road Building Cost:"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/commBuildingCostText"
+        android:layout_marginRight="8dp"
+        android:text="Road Building Cost:"
         android:typeface="monospace"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/commBuildingCostText" />
 
     <!--
     <EditText
@@ -206,155 +183,145 @@
         android:id="@+id/mapWidth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintLeft_toRightOf="@id/mapWidthText"
-        app:layout_constraintTop_toBottomOf="@id/settingsText"
-        app:layout_constraintBottom_toBottomOf="@id/mapWidthText"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="8dp"
         android:textSize="14sp"
         android:typeface="monospace"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/mapWidthText"
+        app:layout_constraintLeft_toRightOf="@id/mapWidthText"
+        app:layout_constraintTop_toBottomOf="@id/settingsText" />
 
     <EditText
         android:id="@+id/mapHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toRightOf="@id/mapHeightText"
-        app:layout_constraintTop_toBottomOf="@id/mapWidthText"
-        app:layout_constraintBottom_toBottomOf="@id/mapHeightText"
+        android:layout_marginRight="8dp"
         android:textSize="14sp"
         android:typeface="monospace"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/mapHeightText"
+        app:layout_constraintLeft_toRightOf="@id/mapHeightText"
+        app:layout_constraintTop_toBottomOf="@id/mapWidthText" />
 
     <EditText
         android:id="@+id/initialMoney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toRightOf="@id/initialMoneyText"
-        app:layout_constraintTop_toBottomOf="@id/mapHeightText"
-        app:layout_constraintBottom_toBottomOf="@id/initialMoneyText"
+        android:layout_marginRight="8dp"
         android:textSize="14sp"
         android:typeface="monospace"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/initialMoneyText"
+        app:layout_constraintLeft_toRightOf="@id/initialMoneyText"
+        app:layout_constraintTop_toBottomOf="@id/mapHeightText" />
 
     <EditText
         android:id="@+id/familySize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toRightOf="@id/familySizeText"
-        app:layout_constraintTop_toBottomOf="@id/initialMoneyText"
-        app:layout_constraintBottom_toBottomOf="@id/familySizeText"
+        android:layout_marginRight="8dp"
         android:textSize="14sp"
         android:typeface="monospace"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/familySizeText"
+        app:layout_constraintLeft_toRightOf="@id/familySizeText"
+        app:layout_constraintTop_toBottomOf="@id/initialMoneyText" />
 
     <EditText
         android:id="@+id/shopSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toRightOf="@id/shopSizeText"
-        app:layout_constraintTop_toBottomOf="@id/familySizeText"
-        app:layout_constraintBottom_toBottomOf="@id/shopSizeText"
+        android:layout_marginRight="8dp"
         android:textSize="14sp"
         android:typeface="monospace"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/shopSizeText"
+        app:layout_constraintLeft_toRightOf="@id/shopSizeText"
+        app:layout_constraintTop_toBottomOf="@id/familySizeText" />
 
     <EditText
         android:id="@+id/salary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toRightOf="@id/salaryText"
-        app:layout_constraintTop_toBottomOf="@id/shopSizeText"
-        app:layout_constraintBottom_toBottomOf="@id/salaryText"
+        android:layout_marginRight="8dp"
         android:textSize="14sp"
         android:typeface="monospace"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/salaryText"
+        app:layout_constraintLeft_toRightOf="@id/salaryText"
+        app:layout_constraintTop_toBottomOf="@id/shopSizeText" />
 
     <EditText
         android:id="@+id/taxRate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toRightOf="@id/taxRateText"
-        app:layout_constraintTop_toBottomOf="@id/salaryText"
-        app:layout_constraintBottom_toBottomOf="@id/taxRateText"
+        android:layout_marginRight="8dp"
         android:textSize="14sp"
         android:typeface="monospace"
-        />
+        app:layout_constraintTop_toBottomOf="@id/settingsText"
+        app:layout_constraintBottom_toBottomOf="@id/taxRateText"
+        app:layout_constraintLeft_toRightOf="@id/taxRateText"
+    />
 
     <EditText
         android:id="@+id/serviceCost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toRightOf="@id/serviceCostText"
-        app:layout_constraintTop_toBottomOf="@id/taxRateText"
-        app:layout_constraintBottom_toBottomOf="@id/serviceCostText"
+        android:layout_marginRight="8dp"
         android:textSize="14sp"
         android:typeface="monospace"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/serviceCostText"
+        app:layout_constraintLeft_toRightOf="@id/serviceCostText"
+        app:layout_constraintTop_toBottomOf="@id/taxRateText" />
 
     <EditText
         android:id="@+id/houseBuildingCost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toRightOf="@id/houseBuildingCostText"
-        app:layout_constraintTop_toBottomOf="@id/serviceCostText"
-        app:layout_constraintBottom_toBottomOf="@id/houseBuildingCostText"
+        android:layout_marginRight="8dp"
         android:textSize="14sp"
         android:typeface="monospace"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/houseBuildingCostText"
+        app:layout_constraintLeft_toRightOf="@id/houseBuildingCostText"
+        app:layout_constraintTop_toBottomOf="@id/serviceCostText" />
 
     <EditText
         android:id="@+id/commBuildingCost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toRightOf="@id/commBuildingCostText"
-        app:layout_constraintTop_toBottomOf="@id/houseBuildingCostText"
-        app:layout_constraintBottom_toBottomOf="@id/commBuildingCostText"
+        android:layout_marginRight="8dp"
         android:textSize="14sp"
         android:typeface="monospace"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/commBuildingCostText"
+        app:layout_constraintLeft_toRightOf="@id/commBuildingCostText"
+        app:layout_constraintTop_toBottomOf="@id/houseBuildingCostText" />
 
     <EditText
         android:id="@+id/roadBuildingCost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toRightOf="@id/roadBuildingCostText"
-        app:layout_constraintTop_toBottomOf="@id/commBuildingCostText"
-        app:layout_constraintBottom_toBottomOf="@id/roadBuildingCostText"
+        android:layout_marginRight="8dp"
         android:textSize="14sp"
         android:typeface="monospace"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/roadBuildingCostText"
+        app:layout_constraintLeft_toRightOf="@id/roadBuildingCostText"
+        app:layout_constraintTop_toBottomOf="@id/commBuildingCostText" />
 
 
     <!--

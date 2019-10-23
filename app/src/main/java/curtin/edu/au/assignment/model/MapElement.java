@@ -1,10 +1,12 @@
 package curtin.edu.au.assignment.model;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 import java.util.Random;
 
+/**
+ * This is what will be represented by each grid cell in the map
+ */
 public class MapElement
 {
     private Structure structure;
@@ -14,10 +16,11 @@ public class MapElement
     public MapElement()
     {
         //Random numbers to make land terrain make use of different textures
-        Random random = new Random();
+        /*Random random = new Random();
         random.setSeed( System.currentTimeMillis() );
         random.setSeed( random.nextLong() );
-        int rand = random.nextInt() % 4;
+        int rand = random.nextInt() % 4;*/
+        int rand = GameData.getInstance().nextRand() % 4;
         switch( rand )
         {
             case 0:
@@ -36,15 +39,20 @@ public class MapElement
                 structure = new Land( StructureData.DRAWABLES[24] );
                 break;
         }
-
+        //The default owner of a MapElement is the Government
         setOwnerName( "Government" );
-        //image = BitmapFactory.decodeResource( GameData.getInstance().getMapContext().getResources(), structure.getImageID() );
     }
 
+    /**
+     * Accessors
+     */
     public Structure getStructure(){ return structure; }
     public Bitmap getImage(){ return image; }
     public String getOwnerName(){ return ownerName; }
 
+    /**
+     * Mutators
+     */
     public void setStructure( Structure struc )
     {
         structure = struc;

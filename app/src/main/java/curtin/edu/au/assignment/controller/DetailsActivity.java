@@ -14,11 +14,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
-
 import curtin.edu.au.assignment.R;
 import curtin.edu.au.assignment.model.GameData;
 
+/**
+ * The details activity
+ */
 public class DetailsActivity extends AppCompatActivity
 {
     private TextView ownerName;
@@ -41,6 +42,7 @@ public class DetailsActivity extends AppCompatActivity
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_details );
 
+        //Initialise the views
         ownerName = ( TextView )findViewById( R.id.owner );
         back = ( Button )findViewById( R.id.back );
         photo = ( Button )findViewById( R.id.photo );
@@ -51,8 +53,10 @@ public class DetailsActivity extends AppCompatActivity
         error = ( TextView )findViewById( R.id.error );
         coord = ( TextView )findViewById( R.id.coordinates );
 
+        //This is final so it can be accessed in the anonymous class
         final Intent intent = getIntent();
 
+        //Convert a bitmap to a byte array so it can be passed back to the map activity
         byte[] ba = intent.getByteArrayExtra( "image" );
         Bitmap bm = BitmapFactory.decodeByteArray( ba, 0, ba.length );
         Bitmap scaled = Bitmap.createScaledBitmap( bm, 200, 200, true );
@@ -63,7 +67,8 @@ public class DetailsActivity extends AppCompatActivity
         row = intent.getIntExtra( "row", 0 );
         col = intent.getIntExtra( "col", 0 );
 
-        String coordStr = "( ";
+        //Build the string for displaying the coordinates
+        String coordStr = "(";
         coordStr += row;
         coordStr += ", ";
         coordStr += col;
@@ -71,6 +76,14 @@ public class DetailsActivity extends AppCompatActivity
 
         coord.setText( coordStr );
 
+        //Type is the type of structure
+        String typeStr = intent.getStringExtra( "type" );
+
+        type.setText( typeStr );
+
+        /**
+         * This is how we go back to the map activity
+         **/
         back.setOnClickListener( new View.OnClickListener()
         {
             @Override
@@ -88,6 +101,7 @@ public class DetailsActivity extends AppCompatActivity
             public void onClick( View view )
             {
                 String newName = newOwner.getText().toString();
+                //Doesn't allow the name to be empty or null
                 if( newName != null && !newName.equals( "" ) )
                 {
                     error.setText( null );
@@ -101,6 +115,7 @@ public class DetailsActivity extends AppCompatActivity
             }
         });
 
+        //This one takes us to the camera app to retrieve a photo
         photo.setOnClickListener( new View.OnClickListener()
         {
             @Override
@@ -112,15 +127,19 @@ public class DetailsActivity extends AppCompatActivity
         });
     }
 
+    /**
+     * This came from the lecture slides (lecture 2 I think?)
+     */
     @Override
     public void onActivityResult( int requestCode, int resultCode, Intent resultIntent )
     {
         super.onActivityResult( requestCode, resultCode, resultIntent );
 
         if( resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_PLAY)
-        { // The return intent from the camera contains the
-// small ("thumbnail") photo inside an extra called
-// "data".
+        {
+            // The return intent from the camera contains the
+            // small ("thumbnail") photo inside an extra called
+            // "data".
             Bitmap img = (Bitmap) resultIntent.getExtras().get("data");
 
             GameData.getInstance().getMapElements()[row][col].setImage( img );

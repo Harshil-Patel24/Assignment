@@ -9,14 +9,11 @@ import curtin.edu.au.assignment.R;
 public class StructureData
 {
     private static final StructureData ourInstance = new StructureData();
-    //private Residential[] residential;
-    //private Commercial[] commercial;
-    //private Road[] road;
 
     public static StructureData getInstance(){ return ourInstance; }
 
     public static final int[] DRAWABLES = {
-            0, // No structure
+            0, /*No structure*/
             /*1*/R.drawable.ic_building1, /*2*/R.drawable.ic_building2, /*3*/R.drawable.ic_building3,
             /*4*/R.drawable.ic_building4, /*5*/R.drawable.ic_building5, /*6*/R.drawable.ic_building6,
             /*7*/R.drawable.ic_building7, /*8*/R.drawable.ic_building8,
@@ -53,15 +50,12 @@ public class StructureData
             new Road(R.drawable.ic_road_nsw),
             new Road(R.drawable.ic_road_new),
             new Road(R.drawable.ic_road_sew),
-            /*new Land(R.drawable.ic_grass1),
-            new Land(R.drawable.ic_grass2),
-            new Land(R.drawable.ic_grass3),
-            new Land(R.drawable.ic_grass4),*/
     });
-
+/*
     public Structure get( int index ){ return structures.get( index ); }
     public int size(){ return structures.size(); }
     public void add( Structure struc ){ structures.add( 0, struc ); }
-    public void remove( int index ){ structures.remove( index ); }
+    public void remove( int index ){ structures.remove( index ); }*/
+
     public ArrayList<Structure> getStructures(){ return new ArrayList<Structure>(structures); }
 }

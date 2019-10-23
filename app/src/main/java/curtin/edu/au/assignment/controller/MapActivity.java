@@ -16,19 +16,16 @@ public class MapActivity extends AppCompatActivity
         setContentView( R.layout.activity_map );
 
         GameData gd = GameData.getInstance();
-        //gd.setMap();
-        //gd.setMoney( gd.getSettings().getInitialMoney() );
-        //gd.setMapContext( MapActivity.this );
 
         FragmentManager fm = getSupportFragmentManager();
 
+        //Create SelectorFragment and StatusFragment first map fragment needs an instance of these to instanciate
         SelectorFragment fragSelector = ( SelectorFragment )fm.findFragmentById( R.id.selector );
         if( fragSelector == null )
         {
             fragSelector = new SelectorFragment();
             fm.beginTransaction().add( R.id.selector, fragSelector ).commit();
         }
-
 
         StatusFragment fragStatus = ( StatusFragment )fm.findFragmentById( R.id.status );
         if( fragStatus == null )
@@ -37,6 +34,12 @@ public class MapActivity extends AppCompatActivity
             fm.beginTransaction().add( R.id.status, fragStatus ).commit();
         }
 
+        /**
+        * This allows MapFragment to use these fragments to set error messages in the status fragment
+        * I have used them through a singleton so I can just have a single default constructor rather than importing them
+        * This allows recreation of the activity without issue when rotating screen
+        * This allows recreation of the activity without issue when rotating screen
+        */
         gd.setSelector( fragSelector );
         gd.setStatus( fragStatus );
 
